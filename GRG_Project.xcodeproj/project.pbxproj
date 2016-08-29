@@ -10,6 +10,7 @@
 		050507C71BA706EF6A3EC08F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6394111C3402FFCA94A11CC3 /* libPods.a */; };
 		2863AB9D1D73E1F100BCFD2A /* LandingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2863AB9A1D73E1F100BCFD2A /* LandingModel.m */; };
 		2863ABA01D73E21200BCFD2A /* LandingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2863AB9F1D73E21200BCFD2A /* LandingView.m */; };
+		2863ABA31D73E34000BCFD2A /* LandingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2863ABA21D73E34000BCFD2A /* LandingViewModel.m */; };
 		2887475A1D6FBFC400B02A3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 288747591D6FBFC400B02A3C /* main.m */; };
 		2887475D1D6FBFC400B02A3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2887475C1D6FBFC400B02A3C /* AppDelegate.m */; };
 		288747631D6FBFC400B02A3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288747611D6FBFC400B02A3C /* Main.storyboard */; };
@@ -50,6 +51,8 @@
 		2863AB9A1D73E1F100BCFD2A /* LandingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingModel.m; sourceTree = "<group>"; };
 		2863AB9E1D73E21200BCFD2A /* LandingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingView.h; sourceTree = "<group>"; };
 		2863AB9F1D73E21200BCFD2A /* LandingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingView.m; sourceTree = "<group>"; };
+		2863ABA11D73E34000BCFD2A /* LandingViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewModel.h; sourceTree = "<group>"; };
+		2863ABA21D73E34000BCFD2A /* LandingViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewModel.m; sourceTree = "<group>"; };
 		288747551D6FBFC400B02A3C /* GRG_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GRG_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		288747591D6FBFC400B02A3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2887475B1D6FBFC400B02A3C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 		2863AB9C1D73E1F100BCFD2A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2863ABA11D73E34000BCFD2A /* LandingViewModel.h */,
+				2863ABA21D73E34000BCFD2A /* LandingViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2863ABA31D73E34000BCFD2A /* LandingViewModel.m in Sources */,
 				2863ABA01D73E21200BCFD2A /* LandingView.m in Sources */,
 				288747951D6FD06500B02A3C /* CJJ_NetWork.m in Sources */,
 				2887478B1D6FCC6800B02A3C /* SuperLabel.m in Sources */,
