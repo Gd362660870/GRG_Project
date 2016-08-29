@@ -12,6 +12,14 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+/**
+ *  退出登陆
+ */
+-(void)exitLanding;
+/**
+ *  已经登陆
+ */
+-(void)determineLanding;
 
 @end
 

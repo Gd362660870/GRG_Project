@@ -7,7 +7,21 @@
 //
 
 #import "LandingViewModel.h"
+#import "LandingView.h"
+
+@interface LandingViewModel()
+@property (nonatomic,strong)LandingView *VC;
+@end
 
 @implementation LandingViewModel
-
+-(instancetype)initWithViewController:(id)viewController
+{
+    self = [super init];
+    if (self) {
+        self.VC = viewController;
+        
+        
+    }
+    return self;
+}
 @end

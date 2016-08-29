@@ -13,9 +13,12 @@
 #import "MessagesView.h"
 #import "NewsView.h"
 #import "SuperNavigationController.h"
+#import "LandingView.h"
+
 
 @interface AppDelegate ()
 @property(nonatomic, strong) UITabBarController *tabBarC;
+@property(nonatomic,strong)SuperNavigationController *landingNVC;
 @end
 
 @implementation AppDelegate
@@ -25,66 +28,42 @@
    
   //确定登陆
   [self determineLanding];
+    
+    //延迟操作
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+       //登陆视图
+        [self setLandingView];
+    });
+    
+    
   return YES;
 }
+
+#pragma mark- 登陆视图
+-(void)setLandingView
+{
+    
+    
+    self.window = [[UIWindow alloc]initWithFrame:SCREEN_BOUNDS];
+    [self.window setRootViewController:self.landingNVC];
+    [self.window makeKeyAndVisible];
+    
+}
+
+#pragma mark - 退出登陆
+- (void)exitLanding {
+    [self.window setRootViewController:self.tabBarC];
+}
+
 #pragma mark -确定登陆
 - (void)determineLanding {
-  //消息
-  NewsView *newsVC = [[NewsView alloc] init];
-  SuperNavigationController *newsNVC =
-      [[SuperNavigationController alloc] initWithRootViewController:newsVC];
-    [newsNVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
-  newsVC.title = @"消息";
-
-  [newsVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
-  [newsVC.tabBarItem setImage:[UIImage imageNamed:@""]];
-    
-    
-  //通讯录
-  MessagesView *messagesVC = [[MessagesView alloc] init];
-    [messagesVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
-  SuperNavigationController *messagesNVC =
-    [[SuperNavigationController alloc] initWithRootViewController:messagesVC];
-    messagesVC.title = @"通讯录";
-  [messagesVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
-  [messagesVC.tabBarItem setImage:[UIImage imageNamed:@""]];
- 
-    //应用
-  AppView *appVC = [[AppView alloc] init];
-    [appVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
-    appVC.title = @"应用";
-  [appVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
-  [appVC.tabBarItem setImage:[UIImage imageNamed:@""]];
-    SuperNavigationController *AppNVC =
-    [[SuperNavigationController alloc] initWithRootViewController:appVC];
- 
-  //发现
-  FindView *findVC = [[FindView alloc] init];
-    [findVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
-    findVC.title = @"发现";
-  SuperNavigationController *findNVC =
-      [[SuperNavigationController alloc] initWithRootViewController:findVC];
-  [findVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
-  [findVC.tabBarItem setImage:[UIImage imageNamed:@""]];
-
-  //我
-  MeView *meVC = [[MeView alloc] init];
-    [meVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
-  SuperNavigationController *meNVC =
-      [[SuperNavigationController alloc] initWithRootViewController:meVC];
-    meVC.title = @"我";
-  [meVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
-  [meVC.tabBarItem setImage:[UIImage imageNamed:@""]];
-    
-    self.tabBarC = [[UITabBarController alloc]init];
-    [self.tabBarC setViewControllers:@[newsNVC,messagesNVC,AppNVC,findNVC,meNVC] animated:YES];
+  
     
     self.window = [[UIWindow alloc]initWithFrame:SCREEN_BOUNDS];
     
     [self.window setRootViewController:self.tabBarC];
     [self.window makeKeyAndVisible];
     
-    //
     [[CJJ_Tools sharedTools]setTabBarItemWithTitleSize:12 andFoneName:@"Marion-Italic" withSelectColor:[UIColor redColor] withUnSelectColor:[UIColor grayColor]];
 
 
@@ -116,6 +95,71 @@
 }
 
 #pragma mark -懒加载
+-(UITabBarController *)tabBarC
+{
+    if (!_tabBarC) {
+        //消息
+        NewsView *newsVC = [[NewsView alloc] init];
+        SuperNavigationController *newsNVC =
+        [[SuperNavigationController alloc] initWithRootViewController:newsVC];
+        [newsNVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
+        newsVC.title = @"消息";
+        
+        [newsVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
+        [newsVC.tabBarItem setImage:[UIImage imageNamed:@""]];
+        
+        
+        //通讯录
+        MessagesView *messagesVC = [[MessagesView alloc] init];
+        [messagesVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
+        SuperNavigationController *messagesNVC =
+        [[SuperNavigationController alloc] initWithRootViewController:messagesVC];
+        messagesVC.title = @"通讯录";
+        [messagesVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
+        [messagesVC.tabBarItem setImage:[UIImage imageNamed:@""]];
+        
+        //应用
+        AppView *appVC = [[AppView alloc] init];
+        [appVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
+        appVC.title = @"应用";
+        [appVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
+        [appVC.tabBarItem setImage:[UIImage imageNamed:@""]];
+        SuperNavigationController *AppNVC =
+        [[SuperNavigationController alloc] initWithRootViewController:appVC];
+        
+        //发现
+        FindView *findVC = [[FindView alloc] init];
+        [findVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
+        findVC.title = @"发现";
+        SuperNavigationController *findNVC =
+        [[SuperNavigationController alloc] initWithRootViewController:findVC];
+        [findVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
+        [findVC.tabBarItem setImage:[UIImage imageNamed:@""]];
+        
+        //我
+        MeView *meVC = [[MeView alloc] init];
+        [meVC.view setBackgroundColor:[UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]];
+        SuperNavigationController *meNVC =
+        [[SuperNavigationController alloc] initWithRootViewController:meVC];
+        meVC.title = @"我";
+        [meVC.tabBarItem setSelectedImage:[UIImage imageNamed:@""]];
+        [meVC.tabBarItem setImage:[UIImage imageNamed:@""]];
+        
+        _tabBarC = [[UITabBarController alloc]init];
+        [_tabBarC setViewControllers:@[newsNVC,messagesNVC,AppNVC,findNVC,meNVC] animated:YES];
+    }
+    return _tabBarC;
+}
+-(SuperNavigationController *)landingNVC
+{
+    if (!_landingNVC) {
+        LandingView *landingVC = [[LandingView alloc]init];
+        landingVC.title = @"消息";
+        _landingNVC = [[SuperNavigationController alloc]initWithRootViewController:landingVC];
+    }
+    return _landingNVC;
+}
+
 
 
 @end
