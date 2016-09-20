@@ -1,0 +1,30 @@
+//
+//  AppDelegate.h
+//  GRG_Project
+//
+//  Created by 陈家劲 on 16/8/26.
+//  Copyright © 2016年 陈家劲. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "UserModel.h"
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
+/**
+ *  用户模型
+ */
+@property (strong,nonatomic)UserModel *userModel;
+
+/**
+ *  退出登陆
+ */
+-(void)exitLanding;
+/**
+ *  已经登陆
+ */
+-(void)determineLanding;
+
+@end
+

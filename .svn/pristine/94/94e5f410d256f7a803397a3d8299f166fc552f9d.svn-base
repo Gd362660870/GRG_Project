@@ -1,0 +1,43 @@
+//
+//  PrefixHeader.pch
+//  GRG_Project
+//
+//  Created by 陈家劲 on 16/8/26.
+//  Copyright © 2016年 陈家劲. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIButton+WebCache.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <POP+MCAnimate.h>
+#import <Masonry/Masonry.h>
+
+
+#import "SuperButton.h"
+#import "SuperImage.h"
+#import "SuperLabel.h"
+#import "UserModel.h"
+#import "CJJ_NetWork.h"
+#import "CJJ_Data.h"
+#import "CJJ_Tools.h"
+#import "SuperWebView.h"
+
+
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREEN_BOUNDS [UIScreen mainScreen].bounds
+#define NOTIFICATION_BadgeNum @"badgeNum"   //角标数量
+#define RELOAD_DATA @"reloadData" //刷新列表
+#define REFRESH_HEADER @"refreshHeader" //下拉刷新
+#define PUSHVC @"PushVC"  //视图控制器跳转
+
+#define SCREEN_TABBAT_HEIGHT 49
+#define SCREEN_NAVIGATIONBAR_HEIGHT 64
+
+#endif /* PrefixHeader_pch */
