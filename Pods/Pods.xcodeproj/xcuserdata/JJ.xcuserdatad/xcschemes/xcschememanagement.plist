@@ -29,27 +29,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>POP+MCAnimate.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>ReactiveCocoa.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>WebViewJavascriptBridge.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,12 +47,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>058C1704C7E27B6E8E9B8D6079068D30</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>24E0C710902946C27485A612BAF9514F</key>
+		<key>211B775B6081C35C920AC8223DBF08CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,22 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>60B7CD074A619494F8814A6CE9F72283</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>70BC44266C6FFE30D2C57129458E070B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD309ADE318F08F8667984DEADF0A027</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FAFFFC00AD9A621CC44080B2CD2F6947</key>
+		<key>E448A081D2D57946B2976F5EE66A012C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

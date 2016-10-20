@@ -7,11 +7,6 @@
 //
 
 #import "SuperViewModel.h"
-@interface LandingViewModel : SuperViewModel<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
-
-@property(nonatomic,strong)RACSignal *loadingSingl;
-@property(nonatomic,strong)RACSignal *titleSingl;
-@property(nonatomic,strong)RACSignal *estimatedProgressSingl;
-@property(nonatomic,strong)NSNumber *loading;
+@interface LandingViewModel : SuperViewModel
 
 @end

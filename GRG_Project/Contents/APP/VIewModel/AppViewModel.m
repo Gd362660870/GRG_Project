@@ -10,84 +10,152 @@
 #import "AppView.h"
 #import "AppModel.h"
 
-@interface AppViewModel()
-@property (nonatomic,strong)AppView *viewC;
-@property (nonatomic,strong)AppModel *model;
+
+
+@interface AppViewModel ()
+
+@property(nonatomic,strong) AppModel *model;
+@property(nonatomic,strong)AppView *viewC;
 @end
 
 @implementation AppViewModel
--(instancetype)initWithViewController:(id)viewController
-{
-    self = [super init];
-    if (self) {
-        self.viewC = viewController;
-       
-    }
+
+
+- (instancetype)initWithViewController:(id)controller{
+    self = [super initWithViewController:controller];
+    self.viewC = controller;
     return self;
 }
-#pragma mark- UIWebViewDelegate
 
-//准备加载内容时调用的方法，通过返回值来进行是否加载的设置
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+#pragma mark - 处理信号
+-(void)processingSignal
 {
-    
-    
-    
-    switch (navigationType) {
-        case UIWebViewNavigationTypeLinkClicked:
-            NSLog(@"用户触击了一个链接");
-            break;
-        case UIWebViewNavigationTypeFormSubmitted:
-            NSLog(@"用户提交了一个表单");
-            break;
-        case UIWebViewNavigationTypeBackForward:
-            NSLog(@"用户触击前进或返回按钮");
-            break;
-        case UIWebViewNavigationTypeReload:
-            NSLog(@"用户触击重新加载的按钮");
-            break;
-        case UIWebViewNavigationTypeFormResubmitted:
-            NSLog(@"用户重复提交表单");
-            break;
-        case UIWebViewNavigationTypeOther:
-            NSLog(@"发生其它行为");
-            break;
-            
-        default:
-            break;
-    }
-    return YES;
+    [super processingSignal];
 }
 
 
 
 
-//开始加载时调用的方法
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    NSLog(@"%@",webView);
-    NSLog(@"开始加载");
+#pragma mark - WKNavigationDelegate
+
+//-------------------------按顺序执行--------------------------
+
+//在发送请求之前，决定是否继续处理。根据webView、navigationAction相关信息决定这次跳转
+//是否可以继续进行,这些信息包含HTTP发送请求，如头部包含User-Agent,Accept。
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+    
+    [super webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:decisionHandler];
+    
+
+    
 }
 
 
+//开始加载页面调用
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation{
+    [super webView:webView didStartProvisionalNavigation:navigation];
+}
+
+//在收到响应后，决定是否继续处理。根据response相关信息，可以决定这次跳转是否可以继续进行。
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:
+(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler{
+    
+    [super webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:decisionHandler];
+}
+
+//内容开始返回时调用
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation{
+    
+    [super webView:webView didCommitNavigation:navigation];
+}
+
+//页面加载完成后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    
+    [super webView:webView didFinishNavigation:navigation];
+    
+    
+
+    
+}
+//页面加载失败时调用
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
+    
+    [super webView:webView didFailProvisionalNavigation:navigation withError:error];
+}
+
+// 接收到服务器跳转请求之后调用(重定向)
+- (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation{
+    
+    [super webView:webView didReceiveServerRedirectForProvisionalNavigation:navigation];
+}
+
+//-------------------------其它三个方法--------------------------
+
+//navigation发生错误时调用
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation
+      withError:(NSError *)error{
+    
+    [super webView:webView didFailNavigation:navigation withError:error];
+}
+
+//web视图需要响应身份验证时调用。
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition,
+                            NSURLCredential *__nullable credential))completionHandler{
+    
+    [super webView:webView didReceiveAuthenticationChallenge:challenge completionHandler:completionHandler];
+}
+
+//web视图需要响应身份验证时调用。
+- (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0){
+    
+    [super webViewWebContentProcessDidTerminate:webView];
+}
+
+#pragma mark - WKUIDelegate
 
 
-//结束加载时调用的方法
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+//3.显示一个JS的Alert（与JS交互）
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler
+{
+    [super webView:webView runJavaScriptAlertPanelWithMessage:message initiatedByFrame:frame completionHandler:completionHandler];
+}
+//4.弹出一个输入框（与JS交互的）
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler
 {
     
-    NSLog(@"结束加载");
+    [super webView:webView runJavaScriptTextInputPanelWithPrompt:prompt defaultText:defaultText initiatedByFrame:frame completionHandler:completionHandler];
+    
 }
-
-
-
-
-//加载失败时调用的方法
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+//5.显示一个确认框（JS的）
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler
 {
-    NSLog(@"加载失败----%@",error.userInfo);
+    [super webView:webView runJavaScriptConfirmPanelWithMessage:message initiatedByFrame:frame completionHandler:completionHandler];
 }
 
+
+
+
+#pragma mark - WKScriptMessageHandler
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message
+{
+    [super userContentController:userContentController didReceiveScriptMessage:message];
+}
+
+
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change
+                       context:(void *)context {
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+
+#pragma mark-初始化
 -(AppModel *)model
 {
     if (!_model) {
@@ -95,7 +163,6 @@
     }
     return _model;
 }
-
 
 
 @end

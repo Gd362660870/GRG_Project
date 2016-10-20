@@ -27,28 +27,6 @@ PODS:
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.12)
   - pop (1.0.9)
-  - POP+MCAnimate (2.0.1):
-    - pop (~> 1.0)
-    - POP+MCAnimate/Animations (= 2.0.1)
-    - POP+MCAnimate/Group (= 2.0.1)
-    - POP+MCAnimate/Internal (= 2.0.1)
-    - POP+MCAnimate/Shorthand (= 2.0.1)
-    - POP+MCAnimate/Velocity (= 2.0.1)
-  - POP+MCAnimate/Animations (2.0.1):
-    - pop (~> 1.0)
-    - POP+MCAnimate/Group
-    - POP+MCAnimate/Internal
-    - POP+MCAnimate/Shorthand
-    - POP+MCAnimate/Velocity
-  - POP+MCAnimate/Group (2.0.1):
-    - pop (~> 1.0)
-  - POP+MCAnimate/Internal (2.0.1):
-    - pop (~> 1.0)
-  - POP+MCAnimate/Shorthand (2.0.1):
-    - pop (~> 1.0)
-  - POP+MCAnimate/Velocity (2.0.1):
-    - pop (~> 1.0)
-    - POP+MCAnimate/Internal
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -56,20 +34,14 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
-  - WebViewJavascriptBridge (5.0.5)
 
 DEPENDENCIES:
   - AFNetworking-RACExtensions
   - Masonry (~> 1.0.0)
   - MBProgressHUD (~> 0.9.2)
   - MJRefresh (~> 3.1.0)
-  - POP+MCAnimate (~> 2.0.1)
+  - pop (~> 1.0)
   - ReactiveCocoa (~> 2.5)
-  - SDWebImage (~> 3.7.5)
-  - WebViewJavascriptBridge (~> 5.0.5)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
@@ -78,9 +50,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
-  POP+MCAnimate: a99e209148c602512de487f1160a44bf78572024
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
 
 COCOAPODS: 0.39.0

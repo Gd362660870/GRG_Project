@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //隐藏导航栏
-    [self.navigationBar setHidden:YES];
+    [self.navigationBar setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {

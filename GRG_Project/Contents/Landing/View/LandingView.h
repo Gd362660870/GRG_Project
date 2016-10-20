@@ -10,5 +10,5 @@
 #import "SuperWKWebView.h"
 
 @interface LandingView : SuperVC
-@property(nonatomic, strong) SuperWKWebView *webView;
+
 @end

@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CJJ_Animation.h"
 
 @interface CJJ_Tools : NSObject
+/**
+ *  动画
+ */
+@property (nonatomic,strong)CJJ_Animation *animation;
 
 /**
  *  单例创建NetWork对象
@@ -29,5 +34,22 @@
                        andFoneName:(NSString *)foneName
                     withSelectColor:(UIColor *)selectColor
                     withUnSelectColor:(UIColor *)unselectColor;
+
+
+/**
+ *  设置TabBarItem的各种状态下字体大小、颜色.
+ *
+ *  @param size          字体大小
+ *  @param foneName      字体名字
+ */
+- (void)setTabBarItemWithTitleSize:(CGFloat)size
+                       andFoneName:(NSString *)foneName;
+
+/**
+ *  打印对象所有属性
+ *
+ *  @param item 对象
+ */
+- (void)properties_aps:(id)item;
 
 @end

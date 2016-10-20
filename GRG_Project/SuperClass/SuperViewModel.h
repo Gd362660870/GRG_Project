@@ -7,16 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SuperNavigationController.h"
 #import "AppDelegate.h"
 #import <WebKit/WebKit.h>
+#import "SuperWKWebView.h"
 
-@interface SuperViewModel : NSObject
+@interface SuperViewModel : NSObject<WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
 
 @property (nonatomic,strong) AppDelegate *appDelegate;
 @property (nonatomic,strong)NSString *title;
--(instancetype)initWithViewController:(id)viewController;
 
+@property(nonatomic,strong)NSNumber *loading;
+@property(nonatomic,assign)BOOL ProgressHide;
+@property(nonatomic,strong)NSNumber *Progress;
+
+
+
+
+- (instancetype)initWithViewController:(id)controller;
+
+
+-(void)processingSignal;
 
 
 @end

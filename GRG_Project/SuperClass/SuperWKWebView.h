@@ -10,4 +10,7 @@
 
 @interface SuperWKWebView : WKWebView
 
+
+
+- (void)loadRequestWithUrlString:(NSString *)urlString;
 @end

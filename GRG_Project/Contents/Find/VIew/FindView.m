@@ -10,32 +10,101 @@
 #import "FindViewModel.h"
 
 @interface FindView ()
-@property (nonatomic,strong)FindViewModel *viewModel;
+@property(nonatomic, strong) FindViewModel *viewModel;
+
 @end
 
 @implementation FindView
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     self.viewModel = [[FindViewModel alloc]initWithViewController:self];
-   
+    [super viewDidLoad];
+}
+
+#pragma mark - 添加视图
+- (void)addViews {
+    [super addViews];
+    [self.view addSubview:self.webView];
+}
+
+#pragma mark - 适配
+- (void)defineLayout {
+    [super defineLayout];
+}
+
+#pragma mark - 关联
+- (void)bindWithViewModel {
+    [super bindWithViewModel];
+    
+    //    @weakify(self)
+    
+    
+    RAC(self, viewModel.loading) =
+    [[self.webView rac_valuesAndChangesForKeyPath:@"loading"
+                                          options:NSKeyValueObservingOptionNew
+                                         observer:nil] map:^id(id value) {
+        // item 1 = 正在加载   item 0 = 加载完成
+        RACTupleUnpack(NSNumber * item) = value;
+        return item;
+    }];
+    
+    //绑定标题
+    RAC(self, title) =
+    [[self.webView rac_valuesAndChangesForKeyPath:@"title"
+                                          options:NSKeyValueObservingOptionNew
+                                         observer:nil] map:^id(id value) {
+        //          @strongify(self)
+        RACTupleUnpack(NSString * item) = value;
+        return item;
+    }];
+    
+    //绑定进度条
+    //    estimatedProgress
+    RAC(self, progressView.progress) =
+    [[self.webView rac_valuesAndChangesForKeyPath:@"estimatedProgress"
+                                          options:NSKeyValueObservingOptionNew
+                                         observer:nil] map:^id(id value) {
+        //          @strongify(self)
+        RACTupleUnpack(NSNumber * item) = value;
+        // item = 0.0 ~ 1.0 表示进度时间
+        return item;
+    }];
+    
+    //绑定进度条Hide
+    RAC(self, progressView.hidden) = RACObserve(self, viewModel.ProgressHide);
+    
+    
 }
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - 控制器生命周期
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"%@",self.webView);
+    [self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"%@",obj);
+    }];
+    [self.webView loadRequestWithUrlString:findURL];
+    self.navigationController.navigationBarHidden = NO;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)dealloc {
+    [self.webView.configuration.userContentController
+     removeScriptMessageHandlerForName:MessageHandlerFind];
 }
-*/
+#pragma mark - 懒加载
+
+- (void)webViewLoadRequestWithUrlString:(NSString *)urlStr
+                       endConfiguration:(WKWebViewConfiguration *)config
+                            endDelegate:(id)delegate
+                 endtMessageHandlerName:(NSString *)name {
+    [super webViewLoadRequestWithUrlString:findURL
+                          endConfiguration:config
+                               endDelegate:self.viewModel
+                    endtMessageHandlerName:MessageHandlerFind];
+}
+
 
 @end

@@ -1,0 +1,163 @@
+//
+//  MainTabBar.m
+//  GRG_Project
+//
+//  Created by 陈家劲 on 16/10/13.
+//  Copyright © 2016年 陈家劲. All rights reserved.
+//
+
+#import "MainTabBar.h"
+#import "UIButton+Type.h"
+@implementation MainTabBar
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  if (self) {
+    @weakify(self) NSArray *arrayName = @[
+      @"消息",
+      @"通讯录",
+      @"应用",
+      @"发现",
+      @"我的",
+    ];
+    NSArray *arrayImageName = @[
+      @"icon-1",
+      @"icon-2",
+      @"icon-3",
+      @"icon-4",
+      @"icon-5",
+    ];
+      
+      NSArray *arrayImageSelectedName = @[
+                                  @"icon-16",
+                                  @"icon-14",
+                                  @"icon-18",
+                                  @"icon-17",
+                                  @"icon-15",
+                                  ];
+    for (int i = 0; i < arrayName.count; i++) {
+      //初始化
+      CGFloat width = SCREEN_WIDTH / 5;
+      UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+      btn.tag = 100 + i;
+      [self addSubview:btn];
+      //事件
+      [[btn rac_signalForControlEvents:UIControlEventTouchUpInside]
+          subscribeNext:^(UIButton *x) {
+            @strongify(self)
+              
+              [x tabBarButtonAnimation];
+              
+              
+              if ([x.titleLabel.text isEqualToString:@"消"
+                                                                    @"息"]) {
+              [self.tapSubject sendNext:@(MainTabBarTypeMessages)];
+            }
+            else if ([x.titleLabel.text isEqualToString:@"通讯录"]) {
+              [self.tapSubject sendNext:@(MainTabBarTypeNews)];
+            }
+            else if ([x.titleLabel.text isEqualToString:@"应用"]) {
+              [self.tapSubject sendNext:@(MainTabBarTypeAPP)];
+            }
+            else if ([x.titleLabel.text isEqualToString:@"发现"]) {
+              [self.tapSubject sendNext:@(MainTabBarTypeFind)];
+            }
+            else if ([x.titleLabel.text isEqualToString:@"我的"]) {
+              [self.tapSubject sendNext:@(MainTabBarTypeMe)];
+            }
+
+            for (int i = 100; i < 100 + arrayImageName.count; i++) {
+              UIButton *button = [self viewWithTag:i];
+              [button setSelected:NO];
+            }
+            [x setSelected:YES];
+
+          }];
+
+      //样式
+
+      [btn setImage:[UIImage imageNamed:arrayImageName[i]]
+           forState:UIControlStateNormal];
+      [btn setImage:[UIImage imageNamed:arrayImageSelectedName[i]] forState:UIControlStateSelected];
+      [btn.imageView setTintColor:[UIColor yellowColor]];
+
+      [btn setTitle:arrayName[i] forState:UIControlStateNormal];
+      [btn setTitle:arrayName[i] forState:UIControlStateSelected];
+      UIFont *font = [UIFont systemFontOfSize:12];
+      [btn.titleLabel setFont:font];
+      [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+      [btn setTitleColor:MAIN_COLOR forState:UIControlStateSelected];
+//      [btn setBackgroundColor:[UIColor whiteColor]];
+
+      //适配
+      [btn setTitleEdgeInsets:UIEdgeInsetsMake(
+                                  30, -btn.imageView.image.size.width, 0, 0)];
+
+      [btn.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(btn);
+        make.centerY.mas_equalTo(btn.mas_top).offset(18);
+        make.size.sizeOffset(CGSizeMake(25, 25));
+
+      }];
+
+      [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.height.mas_equalTo(self.mas_height);
+        make.width.mas_equalTo(width);
+
+        make.top.left.mas_equalTo(self)
+            .insets(UIEdgeInsetsMake(0, width * i, 0, 0));
+      }];
+      if (btn.tag == 100) {
+        [btn setSelected:YES];
+      }
+    }
+
+    UIView *line =
+        [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.3)];
+    [line setBackgroundColor:[UIColor colorWithRed:0.049
+                                             green:0.032
+                                              blue:0.088
+                                             alpha:0.208]];
+
+    [self addSubview:line];
+  }
+  return self;
+}
+
+#pragma mark- 高亮显示某个按钮,另外其余按钮则非选择状态
+- (void)mainTabBarSelectedTagNumber:(NSUInteger)number {
+  for (int i = 100; i < 100 + 5; i++) {
+    UIButton *button = [self viewWithTag:i];
+    [button setSelected:NO];
+  }
+  UIButton *btn = [self viewWithTag:number];
+  if (btn) {
+    [btn setSelected:YES];
+  }
+}
+
+#pragma mark-隐藏
+- (void)hideTabBar {
+  [self mas_updateConstraints:^(MASConstraintMaker *make) {
+    make.height.mas_equalTo(0);
+  }];
+}
+
+
+#pragma mark-显示
+- (void)showTabBar {
+  [self mas_updateConstraints:^(MASConstraintMaker *make) {
+    make.height.mas_equalTo(TabBar_Height_1);
+  }];
+}
+
+#pragma mark -懒加载
+
+- (RACSubject *)tapSubject {
+  if (!_tapSubject) {
+    _tapSubject = [RACSubject subject];
+  }
+  return _tapSubject;
+}
+@end

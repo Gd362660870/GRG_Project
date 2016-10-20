@@ -9,13 +9,16 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <SDWebImage/UIButton+WebCache.h>
+
+
+//#import <SDWebImage/UIImageView+WebCache.h>
+//#import <SDWebImage/UIButton+WebCache.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ReactiveCocoa/RACEXTScope.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 //#import <POP+MCAnimate.h>
 #import <Masonry/Masonry.h>
+#import <pop/POP.h>
 
 
 //#import "SuperButton.h"
@@ -184,6 +187,29 @@ typedef enum{
 
 #pragma mark-----网络接口相关
 
-//static NSString *landingURL = @"http://www.baidu.com"; //登陆页面
+static NSString *baidu = @"http://www.baidu.com"; //百度
 static NSString *landingURL = @"http://10.1.1.112:8090"; //登陆页面
+static NSString *messagesURL = @"http://10.1.1.112:8090/Home/Index";//消息页面
+static NSString *newsURL = @"http://10.1.1.112:8090/Contacts/Index";//通信录页面
+static NSString *appURL = @"http://10.1.1.112:8090/Application/Index";//应用页面
+static NSString *findURL = @"http://10.1.1.112:8090/Finding/Index";//发现页面
+static NSString *meURL = @"http://10.1.1.112:8090/MySetting/Index";//我的页面
+static NSString *yunBaiDu = @"http://yun.baidu.com"; //百度云
+static NSString *xianHuaWangURL = @"http://www.xianhua.com.cn/m/";//鲜花网
+
+#pragma mark-----JS接口相关
+static NSString *MessageHandlerLanding = @"iOS_Landing_API";  //登陆API
+static NSString *MessageHandlerMessages = @"iOS_Messages_API";//消息API
+static NSString *MessageHandlerNews = @"iOS_News_API";//通信录API
+static NSString *MessageHandlerApp = @"iOS_App_API";//应用API
+static NSString *MessageHandlerFind = @"iOS_Find_API";//发现API
+static NSString *MessageHandlerMe = @"iOS_Me_API";//我的API
+
+static NSString *MainHandlerMe = @"iOS_Main_API";//我的API
+#pragma mark- 颜色
+#define MAIN_COLOR [UIColor colorWithRed:0.180 green:0.675 blue:1.000 alpha:1.000]
+
+#pragma mark-各种view常量
+#define SCANNER_FRAME_WIDTH SCREEN_WIDTH-100 //二维码框架大小（正方形）
+
 #endif /* PrefixHeader_pch */

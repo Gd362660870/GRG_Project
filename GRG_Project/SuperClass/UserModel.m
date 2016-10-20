@@ -15,6 +15,8 @@
     if (self) {
         //获取用户信息
         [self getUsInformation];
+        [self AddCookie];
+        
     }
     return self;
 }
@@ -72,15 +74,22 @@
 {
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *nCookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray *cookiesURL = [nCookies cookiesForURL:[NSURL URLWithString:landingURL]];  //这个是主页的url，不是登录页的url
+//    NSArray *cookiesURL = [nCookies cookiesForURL:[NSURL URLWithString:yunBaiDu]];  //这个是主页的url，不是登录页的url
+    NSArray *cookiesURL = nCookies.cookies;
+    
+//    for (NSHTTPCookie *name in cookiesURL) {
+//        NSLog(@"NSHTTPCookie------------->%@",name.name);
+//    }
+    
     
     for (id c in cookiesURL)
     {
         if ([c isKindOfClass:[NSHTTPCookie class]])
         {
             cookie=(NSHTTPCookie *)c;
-            NSLog(@"name---------->%@",cookie.name);
-            if ([cookie.name isEqualToString:@".UmanyiClentCookies"]) {//我的cookies的名字是 "PHPSESSID"，你在上一行打个断点看看你的cookies的name是什么
+//            NSLog(@"name---------->%@",cookie.name);
+//            if ([cookie.name isEqualToString:@".UmanyiClentCookies"]) {//我的cookies的名字是 "PHPSESSID"，你在上一行打个断点看看你的cookies的name是什么
+            if (1){
                 NSDate *expiresDate = [NSDate dateWithTimeIntervalSinceNow:3600*24*30*12];//当前点后，保存一年左右
                 NSArray *cookies = [NSArray arrayWithObjects:cookie.name, cookie.value, expiresDate, cookie.domain, cookie.path, nil];
                 
