@@ -23,8 +23,9 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Masonry (1.0.1)
+  - Masonry (1.0.2)
   - MBProgressHUD (0.9.2)
+  - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
   - pop (1.0.9)
   - ReactiveCocoa (2.5):
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - AFNetworking-RACExtensions
   - Masonry (~> 1.0.0)
   - MBProgressHUD (~> 0.9.2)
+  - MJExtension
   - MJRefresh (~> 3.1.0)
   - pop (~> 1.0)
   - ReactiveCocoa (~> 2.5)
@@ -46,8 +48,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AFNetworking-RACExtensions: a043c6b492fa892395ceb9d20bc4c94e96e08a57
-  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a

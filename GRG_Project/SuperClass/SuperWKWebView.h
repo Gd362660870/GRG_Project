@@ -10,7 +10,13 @@
 
 @interface SuperWKWebView : WKWebView
 
-
+/**
+ *  本地读取
+ *
+ *  @param documentName 文件名字
+ *  @param webView      Web视图
+ */
+-(void)loadDocument:(NSString *)documentName inView:(WKWebView *)webView;
 
 - (void)loadRequestWithUrlString:(NSString *)urlString;
 @end

@@ -53,12 +53,15 @@
     }
     
     NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [myRequest addValue:cookieStr forHTTPHeaderField:@"Cookie"];
+//    [myRequest addValue:cookieStr forHTTPHeaderField:@"Cookie"];
    
     [self loadRequest:myRequest];
     
 }
 
+-(void)loadDocument:(NSString *)documentName inView:(WKWebView *)webView
+{
 
+}
 
 @end
